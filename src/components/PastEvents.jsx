@@ -6,8 +6,8 @@ import logo from '../assets/ENextLogo.png';
 function PastEvents() {
   return (
     <section className="past-events">
-      <div className="past-events__hero">
-        <div className="container past-events__hero-content">
+      <div className="events-hero">
+        <div className="container">
           <EventsTabs />
           <h2 className="section-heading">
             <span className="section-heading__line">EVENTS</span>

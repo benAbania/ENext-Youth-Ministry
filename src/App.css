@@ -1,7 +1,7 @@
 /* ===========================
    Shared / layout helpers
 =========================== */
-.app { overflow-x: hidden; }
+.app { position: relative; }
 section { position: relative; }
 
 .eyebrow {
@@ -233,7 +233,6 @@ button:focus-visible {
 /* Features */
 .features-grid {
   margin-top: 90px;
-  padding-bottom: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -242,8 +241,8 @@ button:focus-visible {
   border-radius: 4px;
   overflow: hidden;
 }
-.feature-card { background: var(--color-bg); padding: 34px 28px; transition: background 0.2s ease; }
-.feature-card:hover { background: #101010; }
+.feature-card { background: var(--color-surface); padding: 34px 28px; transition: background 0.2s ease; }
+.feature-card:hover { background: #1e1e1e; }
 .feature-card__icon { display: inline-flex; color: var(--color-red); margin-bottom: 18px; }
 .feature-card__icon svg { width: 26px; height: 26px; }
 .feature-card h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.02em; font-size: 19px; margin-bottom: 8px; }
@@ -261,10 +260,9 @@ button:focus-visible {
    Past Events
 =========================== */
 .past-events { padding-bottom: 90px; }
-.past-events__hero {
-  scroll-margin-top: 90px;
+.events-hero {
   position: relative;
-  padding: 110px 0 60px;
+  padding: 70px 0 60px;
   background:
     radial-gradient(circle at 20% 15%, rgba(229, 35, 27, 0.14), transparent 55%),
     radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06), transparent 45%),
@@ -360,14 +358,8 @@ button:focus-visible {
 /* ===========================
    Future Events
 =========================== */
-.future-events { padding: 60px 0 0; }
-.future-events__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
-.future-events__logo { width: 90px; height: 90px; border-radius: 14px; flex-shrink: 0; box-shadow: 0 20px 45px rgba(229, 35, 27, 0.18); }
+.future-events { padding: 0; }
 .future-events .event-list { margin-top: 50px; }
-
-@media (max-width: 640px) {
-  .future-events__header { flex-direction: column-reverse; }
-}
 
 .cta-banner {
   margin: 70px 0;
