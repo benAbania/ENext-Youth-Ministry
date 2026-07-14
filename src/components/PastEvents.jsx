@@ -29,7 +29,6 @@ function PastEvents() {
             <p>&ldquo;Remember what the Lord has done. Let it fuel what He will do next.&rdquo;</p>
             <span className="quote-block__citation">1 SAMUEL 7:12</span>
           </div>
-          <img src={logo} alt="" aria-hidden="true" className="quote-block__logo" />
         </div>
       </div>
     </section>
