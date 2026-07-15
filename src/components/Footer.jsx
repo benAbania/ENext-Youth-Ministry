@@ -6,13 +6,13 @@ function Footer() {
     <footer id="footer" className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__social">
-          <a href="#" aria-label="Instagram">
+          <a href="https://www.facebook.com/wisdomchurchesmeralda" target="_blank" aria-label="Instagram">
             <InstagramIcon />
           </a>
-          <a href="#" aria-label="Facebook">
+          <a href="https://www.facebook.com/wisdomchurchesmeralda" target="_blank" aria-label="Facebook">
             <FacebookIcon />
           </a>
-          <a href="#" aria-label="YouTube">
+          <a href="https://www.facebook.com/wisdomchurchesmeralda" target="_blank" aria-label="YouTube">
             <YoutubeIcon />
           </a>
         </div>
