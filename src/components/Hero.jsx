@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ArrowIcon, PhotoIcon, ChevronIcon, HeartIcon, PeopleIcon, ImpactIcon } from './Icons';
+import { ArrowIcon, ChevronIcon, HeartIcon, PeopleIcon, ImpactIcon } from './Icons';
 import logo from '../assets/ENextLogo.png';
 import groupPhoto from '../assets/group-photo.jpg';
 
@@ -63,11 +63,6 @@ function Hero() {
           </p>
         </div>
         <div className="who-we-are__media">
-          {/* Once you have a real photo: import it at the top, e.g.
-              import groupPhoto from '../assets/group-photo.jpg';
-              then replace the placeholder below with:
-              <img src={groupPhoto} alt="EmpowerNext gathering" />
-              The CSS auto-crops it to fill the box (object-fit: cover). */}
           <img src={groupPhoto} alt="EmpowerNext gathering" />
           <button type="button" className="who-we-are__next" aria-label="Next slide">
             <ChevronIcon />

@@ -1,5 +1,5 @@
 import annivThumbnail from './assets/Cover.jpg';
-import soulvivor from './assets/Soulvivor.png';
+import soulvivor from './assets/Soulvivor.jpg';
 import insideout from './assets/insideout.jpg';
 import nanana from './assets/nanana.jpg';
 import sports from './assets/Sportacular.jpg';
@@ -97,6 +97,7 @@ export const futureEvents = [
     title: 'ROOTED',
     description: 'Staying Grounded in Christ While Growing Together',
     image: rooted,
+    link: 'https://www.facebook.com/share/p/1JAr4AvSN6/',
     ctaLabel: 'LEARN MORE',
   },
 ];

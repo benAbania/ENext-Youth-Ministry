@@ -21,6 +21,9 @@ FROM nginx:alpine
 # Copy the built files from Stage 1 into the Nginx server directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Custom config so React Router routes (e.g. /events) don't 404 on refresh
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80 to the outside world
 EXPOSE 80
 

@@ -1,7 +1,6 @@
 import { pastEvents } from '../eventData';
 import EventCard from './EventCard';
 import EventsTabs from './EventsTabs';
-import logo from '../assets/ENextLogo.png';
 
 function PastEvents() {
   return (

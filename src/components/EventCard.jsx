@@ -1,8 +1,7 @@
 import { ArrowIcon, PhotoIcon } from './Icons';
 
 function EventCard({ event, variant }) {
-  // We added albumUrl to this list right here
-  const { month, day, year, title, description, image, category, ctaLabel, albumUrl } = event;
+  const { month, day, year, title, description, image, category, ctaLabel, albumUrl, link } = event;
   const isFuture = variant === 'future';
 
   return (
@@ -29,10 +28,15 @@ function EventCard({ event, variant }) {
         <p className="event-card__description">{description}</p>
 
         {isFuture ? (
-          <button type="button" className="btn btn--outline">
+          <a
+            href={link || '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--outline"
+          >
             {ctaLabel || 'LEARN MORE'}
             <ArrowIcon className="icon-arrow" />
-          </button>
+          </a>
         ) : (
           // We updated the href and added target/rel attributes to open a new tab
           <a 
