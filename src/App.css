@@ -495,3 +495,35 @@ button:focus-visible {
 .fb-reel__event-preview {
   width: 100%;
 }
+
+/* =========================================
+   MOBILE RESPONSIVENESS (FB REEL)
+   ========================================= */
+@media (max-width: 860px) {
+  .fb-reel {
+    /* Stacks the video on top of the text/card */
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .fb-reel__media-wrapper {
+    /* Pushes the video back to the center on mobile */
+    justify-content: center; 
+  }
+
+  .fb-reel__frame {
+    /* Prevents the video from causing horizontal scrolling on tiny phones */
+    max-width: 100%;
+  }
+  
+  .fb-reel__content {
+    /* Centers the text and the card underneath the video */
+    align-items: center;
+    text-align: center;
+  }
+
+  .fb-reel__heading p {
+    /* Keeps the paragraph neatly centered */
+    margin: 0 auto; 
+  }
+}
