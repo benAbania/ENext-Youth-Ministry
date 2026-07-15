@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { ArrowIcon, ChevronIcon, HeartIcon, PeopleIcon, ImpactIcon } from './Icons';
 import logo from '../assets/ENextLogo.png';
 import groupPhoto from '../assets/group-photo.jpg';
+const FB_REEL_URL = 'https://www.facebook.com/reel/2031612771058886/';
+import EventCard from './EventCard'; 
+import { futureEvents } from '../eventData'; // Or whatever your data file is named
 
 function Hero() {
   // Supports the navbar's "/#about" link when arriving from another page.
@@ -52,6 +55,38 @@ function Hero() {
           </div>
         </div>
       </section>
+
+{/* Featured Events Reel Section */}
+      <div className="container fb-reel">
+        
+        <div className="fb-reel__media-wrapper">
+          <iframe
+            className="fb-reel__frame"
+            src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(FB_REEL_URL)}&show_text=false&autoplay=true&mute=true`}
+            title="EmpowerNext Facebook Reel"
+            frameBorder="0"
+            scrolling="no"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <div className="fb-reel__content">
+          <div className="fb-reel__heading">
+            <span className="eyebrow">FEATURED EVENTS</span>
+            <p>
+              Every gathering is a chance to know Christ, find purpose, and make an impact
+              together. Watch a glimpse of what God is doing among us, and imagine
+              yourself in the next one.
+            </p>
+          </div>
+
+          <div className="fb-reel__event-preview">
+            {/* Grabs the first item in your futureEvents array (Rooted) */}
+            <EventCard event={futureEvents[0]} variant="future" />
+          </div>
+        </div>
+
+      </div>
 
       <div id="about" className="container who-we-are">
         <div className="who-we-are__text">

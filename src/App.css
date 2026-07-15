@@ -446,3 +446,52 @@ button:focus-visible {
   .site-footer__logo,
   .site-footer__tagline { justify-self: center; }
 }
+
+/* =========================================
+   FB REEL SECTION
+   ========================================= */
+
+.fb-reel {
+  margin-top: 70px;
+  display: grid;
+  /* This locks the left side to the video size and lets the right side stretch */
+  grid-template-columns: 315px 1fr; 
+  gap: 50px; 
+  align-items: center;
+}
+
+.fb-reel__media-wrapper {
+  display: flex;
+  /* This pushes the video flush to the left edge */
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+.fb-reel__frame {
+  width: 315px;
+  height: 560px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: #000;
+  box-shadow: 0 10px 30px rgba(229, 35, 27, 0.08);
+}
+
+.fb-reel__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; 
+  width: 100%;
+}
+
+.fb-reel__heading p {
+  color: var(--color-gray);
+  line-height: 1.7;
+  font-size: 15px;
+  /* Removing the 460px limit ensures the text and card share the same alignment */
+  max-width: 100%; 
+  margin-top: 0;
+}
+
+.fb-reel__event-preview {
+  width: 100%;
+}
