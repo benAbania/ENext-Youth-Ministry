@@ -1,7 +1,8 @@
 import { ArrowIcon, PhotoIcon } from './Icons';
 
 function EventCard({ event, variant }) {
-  const { month, day, year, title, description, image, category, ctaLabel } = event;
+  // We added albumUrl to this list right here
+  const { month, day, year, title, description, image, category, ctaLabel, albumUrl } = event;
   const isFuture = variant === 'future';
 
   return (
@@ -33,7 +34,13 @@ function EventCard({ event, variant }) {
             <ArrowIcon className="icon-arrow" />
           </button>
         ) : (
-          <a href="#" className="event-card__link">
+          // We updated the href and added target/rel attributes to open a new tab
+          <a 
+            href={albumUrl || "#"} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="event-card__link"
+          >
             {ctaLabel || 'VIEW PHOTOS'}
             <ArrowIcon className="icon-arrow" />
           </a>

@@ -1,8 +1,20 @@
 // Set `image` to an imported photo once you have real event pictures, e.g.:
 //   import elevateNight from './assets/events/elevate-night.jpg';
 // Leave it as `null` and EventCard will render a placeholder instead.
+import annivThumbnail from './assets/annivthumbnail.jpg';
 
 export const pastEvents = [
+  {
+    id: 'anniversary-2024',
+    month: 'DEC', // Feel free to change this to the actual month!
+    day: '15',    // And change the day!
+    year: '2024',
+    title: 'ANNIVERSARY 2024',
+    description: 'Celebrating another amazing year of what God is doing through EmpowerNext.',
+    image: annivThumbnail,
+    albumUrl: 'https://photos.app.goo.gl/9WrGcGbtBWXZwaGt5',
+    ctaLabel: 'VIEW PHOTOS',
+  },
   {
     id: 'elevate-night',
     month: 'APR',
