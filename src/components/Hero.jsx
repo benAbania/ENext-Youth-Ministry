@@ -1,14 +1,43 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { supabase } from '../supabase';
 import { ArrowIcon, ChevronIcon, HeartIcon, PeopleIcon, ImpactIcon } from './Icons';
 import logo from '../assets/ENextLogo.png';
 import groupPhoto from '../assets/group-photo.jpg';
-const FB_REEL_URL = 'https://www.facebook.com/reel/2031612771058886/';
 import EventCard from './EventCard'; 
-import { futureEvents } from '../eventData'; // Or whatever your data file is named
 
 function Hero() {
-  // Supports the navbar's "/#about" link when arriving from another page.
+  // 1. ALL state buckets must live inside the component!
+  const [fbReelUrl, setFbReelUrl] = useState('');
+  const [liveFutureEvents, setLiveFutureEvents] = useState([]);
+
   useEffect(() => {
+    // Fetch the "Future" events
+    const fetchFutureEvents = async () => {
+      const { data } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'future')
+        .order('id', { ascending: false });
+      
+      if (data) setLiveFutureEvents(data);
+    };
+
+    // Fetch the Reel URL
+    const fetchReel = async () => {
+      const { data } = await supabase
+        .from('homepage_settings')
+        .select('fb_reel_url')
+        .eq('id', 1)
+        .single();
+
+      if (data) setFbReelUrl(data.fb_reel_url);
+    };
+    
+    // Run all fetches as soon as the website loads
+    fetchFutureEvents();
+    fetchReel();
+
+    // Supports the navbar's "/#about" link
     if (window.location.hash === '#about') {
       document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
     }
@@ -56,19 +85,24 @@ function Hero() {
         </div>
       </section>
 
-{/* Featured Events Reel Section */}
+      {/* Featured Events Reel Section */}
       <div className="container fb-reel">
-        
         <div className="fb-reel__media-wrapper">
-          <iframe
-            className="fb-reel__frame"
-            src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(FB_REEL_URL)}&show_text=false&autoplay=true&mute=true`}
-            title="EmpowerNext Facebook Reel"
-            frameBorder="0"
-            scrolling="no"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            allowFullScreen
-          />
+          {/* Only render the iframe if a URL actually exists in the database */}
+          {fbReelUrl ? (
+            <iframe
+              className="fb-reel__frame"
+              src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(fbReelUrl)}&show_text=false&autoplay=true&mute=true`}
+              frameBorder="0"
+              scrolling="no"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          ) : (
+            <div style={{ padding: '20px', textAlign: 'center', color: '#888', background: '#1a1a1a', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              Loading video...
+            </div>
+          )}
         </div>
         <div className="fb-reel__content">
           <div className="fb-reel__heading">
@@ -81,11 +115,13 @@ function Hero() {
           </div>
 
           <div className="fb-reel__event-preview">
-            {/* Grabs the first item in your futureEvents array (Rooted) */}
-            <EventCard event={futureEvents[0]} variant="future" />
+            {liveFutureEvents.length > 0 ? (
+              <EventCard event={liveFutureEvents[0]} variant="future" />
+            ) : (
+              <p className="empty-state" style={{ color: '#888', fontStyle: 'italic' }}>Loading next event...</p>
+            )}
           </div>
         </div>
-
       </div>
 
       <div id="about" className="container who-we-are">

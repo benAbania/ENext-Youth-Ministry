@@ -1,8 +1,11 @@
 import { ArrowIcon, PhotoIcon } from './Icons';
 
 function EventCard({ event, variant }) {
-  const { month, day, year, title, description, image, category, ctaLabel, albumUrl, link } = event;
+  const { month, day, year, title, description, image, category, ctaLabel, albumUrl } = event;
   const isFuture = variant === 'future';
+
+  // We use albumUrl for both since that's what comes from our database!
+  const targetLink = albumUrl || '#';
 
   return (
     <article className={`event-card event-card--${variant}`}>
@@ -28,26 +31,34 @@ function EventCard({ event, variant }) {
         <p className="event-card__description">{description}</p>
 
         {isFuture ? (
-          <a
-            href={link || '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn--outline"
-          >
-            {ctaLabel || 'LEARN MORE'}
-            <ArrowIcon className="icon-arrow" />
-          </a>
+          // Only show the button if there is actually a link saved in the database
+          albumUrl ? (
+            <a
+              href={targetLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+            >
+              {ctaLabel || 'LEARN MORE'}
+              <ArrowIcon className="icon-arrow" />
+            </a>
+          ) : (
+            <span className="btn btn--outline" style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+              COMING SOON
+            </span>
+          )
         ) : (
-          // We updated the href and added target/rel attributes to open a new tab
-          <a 
-            href={albumUrl || "#"} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="event-card__link"
-          >
-            {ctaLabel || 'VIEW PHOTOS'}
-            <ArrowIcon className="icon-arrow" />
-          </a>
+          albumUrl && (
+            <a 
+              href={targetLink} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="event-card__link"
+            >
+              {ctaLabel || 'VIEW PHOTOS'}
+              <ArrowIcon className="icon-arrow" />
+            </a>
+          )
         )}
       </div>
     </article>

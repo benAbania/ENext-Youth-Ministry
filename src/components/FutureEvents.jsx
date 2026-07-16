@@ -1,9 +1,25 @@
-import { futureEvents } from '../eventData';
+import { useEffect, useState } from 'react';
+import { supabase } from '../supabase'; // Make sure this path points to your supabase.js file
 import EventCard from './EventCard';
 import EventsTabs from './EventsTabs';
 import { CalendarIcon, ArrowIcon } from './Icons';
 
 function FutureEvents() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'future')
+        .order('id', { ascending: false });
+      
+      if (data) setEvents(data);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <section className="future-events">
       <div className="events-hero">
@@ -19,9 +35,13 @@ function FutureEvents() {
 
       <div className="container">
         <div className="event-list">
-          {futureEvents.map((event) => (
-            <EventCard key={event.id} event={event} variant="future" />
-          ))}
+          {events.length > 0 ? (
+            events.map((event) => (
+              <EventCard key={event.id} event={event} variant="future" />
+            ))
+          ) : (
+            <p style={{ color: '#888', fontStyle: 'italic', textAlign: 'center' }}>No future events scheduled yet.</p>
+          )}
         </div>
 
         <div className="cta-banner">

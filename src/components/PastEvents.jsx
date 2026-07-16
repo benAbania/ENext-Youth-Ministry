@@ -1,8 +1,24 @@
-import { pastEvents } from '../eventData';
+import { useEffect, useState } from 'react';
+import { supabase } from '../supabase'; // Ensure this path matches your folder structure
 import EventCard from './EventCard';
 import EventsTabs from './EventsTabs';
 
 function PastEvents() {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await supabase
+        .from('events')
+        .select('*')
+        .eq('status', 'past')
+        .order('id', { ascending: false });
+      
+      if (data) setEvents(data);
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <section className="past-events">
       <div className="events-hero">
@@ -18,9 +34,13 @@ function PastEvents() {
 
       <div className="container">
         <div className="event-list">
-          {pastEvents.map((event) => (
-            <EventCard key={event.id} event={event} variant="past" />
-          ))}
+          {events.length > 0 ? (
+            events.map((event) => (
+              <EventCard key={event.id} event={event} variant="past" />
+            ))
+          ) : (
+            <p style={{ color: '#888', fontStyle: 'italic', textAlign: 'center' }}>No past events found.</p>
+          )}
         </div>
 
         <div className="quote-block">
