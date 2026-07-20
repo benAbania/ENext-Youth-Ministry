@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/ENextLogo.png';
+import churchLogo from '../assets/ChurchLogo.png';
 
 const NAV_LINKS = [
   { label: 'HOME', to: '/', match: (path) => path === '/' },
@@ -34,8 +35,11 @@ function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
-        <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src={logo} alt="EmpowerNext" />
+        <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}> 
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <img src={churchLogo} alt="Church Logo" style={{ height: '40px' }} />
+            <img src={logo} alt="EmpowerNext Logo" style={{ height: '40px' }} />
+          </div>
         </Link>
 
         <nav className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
